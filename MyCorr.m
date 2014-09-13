@@ -1,3 +1,4 @@
+%this function is used for correlation
 function ImageCorr = MyCorr(ImageIn, Mask)
     [row_mask,col_mask] = size(Mask);
     %ImageCorr = zeros(row,col);

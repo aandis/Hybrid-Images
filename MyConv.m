@@ -1,4 +1,5 @@
-function ImageConv = MyCorr(ImageIn, Mask)
+%this function is used for convolution
+function ImageConv = MyConv(ImageIn, Mask)
     [row_mask,col_mask] = size(Mask);
     %ImageCorr = zeros(row,col);
     ImageConv = [];

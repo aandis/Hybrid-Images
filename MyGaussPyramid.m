@@ -1,7 +1,10 @@
 function Pyramid = MyGaussPyramid(ImageIn)
     [row,col,z] = size(ImageIn);
     Gauss_Filter = MyGauss(1,3); %Gaussian filter of size 3x3 and sigma 1
-    Pyramid{1} = ImageIn; %storing the pyramids in a cell array
+    %Pyramid{1} = ImageIn; %storing the pyramids in a cell array
+    Pyramid = [];
+    Pyramid = ImageIn;
+    [c,d] = size(ImageIn);
     j = 1;
     while(row>1)
         ImageIn = MyConv(ImageIn,Gauss_Filter); %convolving with Gauss to smoothen
@@ -15,12 +18,18 @@ function Pyramid = MyGaussPyramid(ImageIn)
         end
         [row,col,z] = size(ImageIn);
         j = j + 1;
-        Pyramid{j} = ImageIn;
+        Temp = ImageIn;
+        for i = 1:c-row
+            Temp(row+i,:,:) = 0;
+        end
+        Pyramid = [Pyramid Temp];
     end
     %now displaying the pyramid
-    [m,n] = size(Pyramid);
-    for i = 1:n
-        figure;
-        (imshow(Pyramid{i}));
-    end
+    figure;
+    imshow(Pyramid);
+%    [m,n] = size(Pyramid);
+%    for i = 1:n
+%        figure;
+%        (imshow(Pyramid{i}));
+%    end
 end
